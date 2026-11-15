@@ -1,0 +1,302 @@
+/* ===== PREMIUM HUD LOGIN UI ===== */
+
+:root {
+  --neon-blue: #00f2ff;
+  --neon-purple: #9d00ff;
+  --bg-deep: #050810;
+  --glass-bg: rgba(10, 15, 30, 0.4);
+  --glass-border: rgba(0, 242, 255, 0.15);
+  --text-dim: rgba(255, 255, 255, 0.6);
+}
+
+.native-login-host {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-deep);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* === Animated Background === */
+.login-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+}
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--neon-purple);
+  top: -100px;
+  right: -50px;
+  animation: floatOrb 15s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: var(--neon-blue);
+  bottom: 10%;
+  left: -50px;
+  animation: floatOrb 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 40px) scale(1.1); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+}
+
+/* === Scanline Effect === */
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 242, 255, 0.2);
+  box-shadow: 0 0 10px var(--neon-blue);
+  z-index: 1;
+  animation: scan 4s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+/* === Content Area === */
+.safe-area-padding {
+  padding: 2rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-top: 1rem;
+  background: linear-gradient(to bottom, #fff, var(--neon-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* === Premium Login Card === */
+.form-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  padding: 2.5rem 2rem;
+  border-radius: 32px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+/* HUD Corner Decorations */
+.form-card::before, .form-card::after,
+.form-card span.hud-corner-tl, .form-card span.hud-corner-br {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--neon-blue);
+  opacity: 0.5;
+}
+
+.hud-corner-tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
+.hud-corner-tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; border-radius: 0 8px 0 0; }
+.hud-corner-bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; border-radius: 0 0 0 8px; }
+.hud-corner-br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; border-radius: 0 0 8px 0; }
+
+/* === Inputs === */
+.native-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.native-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+  padding-left: 4px;
+}
+
+.native-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.1rem 1.25rem;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.native-input:focus {
+  border-color: var(--neon-blue);
+  background: rgba(0, 242, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.native-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Error === */
+.error-banner {
+  background: rgba(255, 59, 59, 0.1);
+  color: #ff3b3b;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgba(255, 59, 59, 0.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* === Submit Button === */
+.action-area {
+  margin-top: 0.5rem;
+}
+
+.native-fab {
+  position: relative;
+  background: var(--neon-blue);
+  color: #000;
+  border: none;
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 18px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+  overflow: hidden;
+}
+
+.native-fab:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 242, 255, 0.5);
+  filter: brightness(1.1);
+}
+
+.native-fab:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.native-fab:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Button Glint */
+.native-fab::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.5s;
+}
+
+.native-fab:hover::after {
+  left: 150%;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0,0,0,0.2);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .brand-title { font-size: 2rem; }
+  .form-card { padding: 2rem 1.5rem; border-radius: 28px; }
+  .native-input { padding: 1rem; }
+}

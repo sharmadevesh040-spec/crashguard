@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563859540267",
+    "project_id": "lifeguard-ai-3af65",
+    "storage_bucket": "lifeguard-ai-3af65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563859540267:android:4dfa43267cfa4ad94e9d6e",
+        "android_client_info": {
+          "package_name": "com.devesh.accidentdetector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcSHt2kUgIxaTzvXYOBxJTpMhLUiWsPZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

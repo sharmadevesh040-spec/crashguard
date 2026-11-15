@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">accident detector </string>
+    <string name="title_activity_main">accident detector </string>
+    <string name="package_name">com.devesh.accidentdetector</string>
+    <string name="custom_url_scheme">com.devesh.accidentdetector</string>
+</resources>
